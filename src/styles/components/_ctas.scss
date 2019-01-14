@@ -1,0 +1,17 @@
+.btn {
+  font-size: 0.8rem;
+  margin: 10px 5px;
+
+  &.btn-primary {
+    background: map-get($buttons, 'primary');
+    border-color: map-get($buttons, 'primary');
+    color: map-get($buttons, 'primary-color');
+  }
+
+  &.btn-secondary {
+    background: map-get($buttons, 'secondary');
+    border-color: map-get($buttons, 'secondary');
+    color: map-get($buttons, 'secondary-color');
+  }
+
+}

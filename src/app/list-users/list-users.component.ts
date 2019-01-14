@@ -8,12 +8,13 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./list-users.component.scss']
 })
 export class ListUsersComponent implements OnInit {
+  public focused: Boolean = false;
   public users: Array<any> = [];
   public albums: Array<Object> = [];
   public searchField = new FormControl();
   private counterPhotos: Number = 0;
   private searchForm: FormGroup = this.formBuilder.group({ search: this.searchField });
-  private registrationForm: FormGroup = this.formBuilder.group({
+  private registerForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
     name: ['', Validators.required],
     email: ['', Validators.required],
@@ -94,6 +95,6 @@ export class ListUsersComponent implements OnInit {
   }
 
   public resetForm(): void {
-    this.registrationForm.reset();
+    this.registerForm.reset();
   }
 }

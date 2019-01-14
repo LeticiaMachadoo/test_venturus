@@ -1,0 +1,44 @@
+form {
+  label {
+    display: block;
+    font-weight: 500;
+  }
+
+  .form-control {
+    &:focus {
+      border-color: map-get($colors, 'primary');
+      box-shadow: none;
+    }
+  }
+
+  .custom-control {
+    &.custom-checkbox,
+    &.custom-radio {
+      align-items: center;
+      display: inline-flex;
+      margin-right: 1rem;
+
+    .custom-control-input {
+      &:checked {
+        ~ .custom-control-label {
+          &::before {
+            background-color: map-get($colors, 'primary');
+            border-color: map-get($colors, 'primary');
+          }
+        }
+      }
+      &:focus {
+        ~ .custom-control-label {
+          &::before {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+
+    label {
+      font-weight: normal;
+    }
+    }
+  }
+}
