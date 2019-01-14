@@ -5,3 +5,8 @@
   font-family: 'Roboto', 'Source Sans Pro', sans-serif;
   font-size: 12px;
 }
+
+a,
+.btn-link {
+  color: map-get($colors, 'primary');
+}

@@ -2,6 +2,10 @@
   font-size: 0.8rem;
   margin: 10px 5px;
 
+  &.btn-link {
+    margin: 0;
+  }
+
   &.btn-primary {
     background: map-get($buttons, 'primary');
     border-color: map-get($buttons, 'primary');

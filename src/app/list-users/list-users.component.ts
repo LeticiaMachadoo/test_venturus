@@ -132,6 +132,11 @@ export class ListUsersComponent implements OnInit {
     }
   }
 
+  public removeUser(id: Number): void {
+    const index = this.users.findIndex(x => x.id === id);
+    this.users.splice(index, 1);
+  }
+
   public resetForm(): void {
     this.registerForm.reset();
   }
