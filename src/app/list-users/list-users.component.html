@@ -54,7 +54,7 @@
           </div>
           <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="text" class="form-control" id="email" formControlName="email">
+            <input type="email" class="form-control" id="email" formControlName="email">
           </div>
         </div>
         <div class="col-md-6">
@@ -112,7 +112,7 @@
         <div class="col-md-6">
           <div class="ctas">
             <button class="btn btn-primary" (click)="addNewUser()">Save</button>
-            <button class="btn btn-secondary">Discart</button>
+            <button class="btn btn-secondary" (click)="resetForm()">Discart</button>
           </div>
         </div>
       </div>

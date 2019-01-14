@@ -92,4 +92,8 @@ export class ListUsersComponent implements OnInit {
 
   public addNewUser(): void {
   }
+
+  public resetForm(): void {
+    this.registrationForm.reset();
+  }
 }
