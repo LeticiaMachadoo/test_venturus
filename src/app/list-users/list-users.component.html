@@ -64,7 +64,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="city">City</label>
+              <label for="city">City <span>optional</span></label>
               <input type="text" class="form-control" id="city" formControlName="city">
             </div>
             <div class="form-group">
@@ -84,34 +84,10 @@
             </div>
             <div class="form-group">
               <label>Days of the week</label>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="sunday" formControlName="sunday">
-                <label class="custom-control-label" for="sunday">Sun</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="monday" formControlName="monday">
-                <label class="custom-control-label" for="monday">Mon</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="tuesday" formControlName="tuesday">
-                <label class="custom-control-label" for="tuesday">Tue</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="wednesday" formControlName="wednesday">
-                <label class="custom-control-label" for="wednesday">Wed</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="thursday" formControlName="thursday">
-                <label class="custom-control-label" for="thursday">Thu</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="friday" formControlName="friday">
-                <label class="custom-control-label" for="friday">Fri</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="saturday" formControlName="saturday">
-                <label class="custom-control-label" for="saturday">Sat</label>
-              </div>
+              <div formArrayName="days" class="custom-control custom-checkbox" *ngFor="let day of days; let i = index">
+                  <input class="custom-control-input" type="checkbox" [id]="day.name" [formControlName]="i">
+                  <label class="custom-control-label" [for]="day.name">{{day.text}}</label>
+                </div>
             </div>
           </div>
           <div class="col-md-6">

@@ -36,4 +36,11 @@ export class UserService {
   public getPosts(): Promise<any> {
     return this.requesterService.get(Url.POSTS);
   }
+
+  /**
+   * Adicionar novo usuário.
+   */
+  public addNewUser(user: Object): Promise<any> {
+    return this.requesterService.post(Url.USERS, user);
+  }
 }

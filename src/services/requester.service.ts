@@ -16,6 +16,11 @@ export class RequesterService {
     return this.http.get(url, { headers: new HttpHeaders(this.getHttpOptions()) }).toPromise();
   }
 
+  public post(path: string, payload: Object = {}): Promise<any> {
+    const url = this.url + path;
+    return this.http.post(url, payload, { headers: new HttpHeaders(this.getHttpOptions()) }).toPromise();
+  }
+
   private getHttpOptions(): any {
     const options: Object = {
       'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-list-users',
@@ -11,23 +11,30 @@ export class ListUsersComponent implements OnInit {
   public focused: Boolean = false;
   public users: Array<any> = [];
   public albums: Array<Object> = [];
-  public searchField = new FormControl();
   private counterPhotos: Number = 0;
+  public days = [
+    { id: 0, name: 'sunday', text: 'Sun' },
+    { id: 1, name: 'monday', text: 'Mon' },
+    { id: 2, name: 'tuesday', text: 'Tue' },
+    { id: 3, name: 'wednesday', text: 'Wed' },
+    { id: 4, name: 'thuersday', text: 'Thu' },
+    { id: 5, name: 'friday', text: 'Fri' },
+    { id: 6, name: 'saturday', text: 'Sat' }
+  ];
+
+  // Forms
+  public searchField = new FormControl();
   private searchForm: FormGroup = this.formBuilder.group({ search: this.searchField });
+  private controls = this.days.map(day => new FormControl(false));
   private registerForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
     name: ['', Validators.required],
     email: ['', Validators.required],
-    city: ['', Validators.required],
+    city: [''],
     rideInGroup: ['', Validators.required],
-    sunday: [''],
-    monday: [''],
-    tuesday: [''],
-    wednesday: [''],
-    thursday: [''],
-    friday: [''],
-    saturday: ['']
+    days: new FormArray(this.controls, this.minSelectedCheckboxes(1))
   });
+
   constructor(
     public formBuilder: FormBuilder,
     public userService: UserService
@@ -40,6 +47,17 @@ export class ListUsersComponent implements OnInit {
     });
     this.getPhotosByAlbum();
     this.getPostsByUser();
+  }
+
+  public minSelectedCheckboxes(min = 1) {
+    const validator: ValidatorFn = (formArray: FormArray) => {
+      const totalSelected = formArray.controls
+        .map(control => control.value)
+        .reduce((prev, next) => next ? prev + next : prev, 0);
+      return totalSelected >= min ? null : { required: true };
+    };
+
+    return validator;
   }
 
   public getPhotosByAlbum(): void {
@@ -92,6 +110,26 @@ export class ListUsersComponent implements OnInit {
   }
 
   public addNewUser(): void {
+    const user = {
+      address: {
+        city: this.registerForm.value.city,
+      },
+      days: [false, false, false, false, false, false, false],
+      email: this.registerForm.value.email,
+      name: this.registerForm.value.name,
+      username: this.registerForm.value.username,
+    };
+    if (this.registerForm.status !== 'INVALID') {
+      this.userService.addNewUser(user)
+        .then((response) => {
+          this.users.push(response);
+        })
+        .catch(() => {
+          alert('Erro ao cadastrar novo usuário. Tente novamente.');
+        });
+    } else {
+      alert('Preencha todos os dados corretamente.');
+    }
   }
 
   public resetForm(): void {

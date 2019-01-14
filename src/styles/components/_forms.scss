@@ -2,12 +2,27 @@ form {
   label {
     display: block;
     font-weight: 500;
+    position: relative;
+
+    span {
+      bottom: 0;
+      color: map-get($gray, 'light');
+      font-size: 0.7rem;
+      position: absolute;
+      right: 10px;
+    }
   }
 
   .form-control {
     &:focus {
       border-color: map-get($colors, 'primary');
       box-shadow: none;
+    }
+
+    &.ng-invalid {
+      &.ng-touched {
+        border-color: map-get($colors, 'danger');
+      }
     }
   }
 
