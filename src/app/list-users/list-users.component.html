@@ -1,6 +1,6 @@
 <div class="content">
   <form [formGroup]="searchForm">
-    <div class="form-group form-group-border">
+    <div class="form-group">
       <div class="input-group col-md-4">
         <div class="input-group-append">
           <span class="input-group-text" id="search-field"><i class="fa fa-search"></i></span>
@@ -38,5 +38,84 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="registration">
+    <form [formGroup]="registrationForm">
+      <div class="form-row clearfix">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" formControlName="username">
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" class="form-control" id="email" formControlName="email">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" formControlName="city">
+          </div>
+          <div class="form-group">
+            <label>Ride in group?</label>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="always" formControlName="rideInGroup" class="custom-control-input">
+              <label class="custom-control-label" for="always">Always</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="sometimes" formControlName="rideInGroup" class="custom-control-input">
+              <label class="custom-control-label" for="sometimes">Sometimes</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="never" formControlName="rideInGroup" class="custom-control-input">
+              <label class="custom-control-label" for="never">Never</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Days of the week</label>
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" type="checkbox" id="sunday" formControlName="sunday">
+              <label class="custom-control-label" for="sunday">Sun</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" type="checkbox" id="monday" formControlName="monday">
+              <label class="custom-control-label" for="monday">Mon</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" type="checkbox" id="tuesday" formControlName="tuesday">
+              <label class="custom-control-label" for="tuesday">Tue</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" type="checkbox" id="wednesday" formControlName="wednesday">
+              <label class="custom-control-label" for="wednesday">Wed</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" type="checkbox" id="thursday" formControlName="thursday">
+              <label class="custom-control-label" for="thursday">Thu</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" type="checkbox" id="friday" formControlName="friday">
+              <label class="custom-control-label" for="friday">Fri</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" type="checkbox" id="saturday" formControlName="saturday">
+              <label class="custom-control-label" for="saturday">Sat</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="ctas">
+            <button class="btn btn-primary" (click)="addNewUser()">Save</button>
+            <button class="btn btn-secondary">Discart</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
