@@ -10,9 +10,23 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 export class ListUsersComponent implements OnInit {
   public users: Array<any> = [];
   public albums: Array<Object> = [];
-  private counterPhotos: Number = 0;
   public searchField = new FormControl();
-  public searchForm: FormGroup = this.formBuilder.group({ search: this.searchField });
+  private counterPhotos: Number = 0;
+  private searchForm: FormGroup = this.formBuilder.group({ search: this.searchField });
+  private registrationForm: FormGroup = this.formBuilder.group({
+    username: ['', Validators.required],
+    name: ['', Validators.required],
+    email: ['', Validators.required],
+    city: ['', Validators.required],
+    rideInGroup: ['', Validators.required],
+    sunday: [''],
+    monday: [''],
+    tuesday: [''],
+    wednesday: [''],
+    thursday: [''],
+    friday: [''],
+    saturday: ['']
+  });
   constructor(
     public formBuilder: FormBuilder,
     public userService: UserService
@@ -74,5 +88,8 @@ export class ListUsersComponent implements OnInit {
         currentUser.posts = posts.filter(test => test.userId === user.id);
       });
     });
+  }
+
+  public addNewUser(): void {
   }
 }
