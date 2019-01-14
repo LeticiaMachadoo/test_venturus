@@ -88,8 +88,8 @@
             </div>
             <div class="form-group">
               <label>Days of the week</label>
-              <div formArrayName="days" class="custom-control custom-checkbox" *ngFor="let day of days; let i = index">
-                <input class="custom-control-input" type="checkbox" [id]="day.name" [formControlName]="i">
+              <div formArrayName="days" class="custom-control custom-checkbox" *ngFor="let day of daysOfWeek; let i = index">
+                <input class="custom-control-input" type="checkbox" [id]="day.name" [formControlName]="day.id">
                 <label class="custom-control-label" [for]="day.name">{{day.text}}</label>
               </div>
             </div>

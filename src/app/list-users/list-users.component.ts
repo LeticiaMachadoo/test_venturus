@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
+import { IUser } from 'src/interfaces/user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-users',
@@ -9,10 +11,10 @@ import { FormControl, FormGroup, FormBuilder, Validators, FormArray, ValidatorFn
 })
 export class ListUsersComponent implements OnInit {
   public focused: Boolean = false;
-  public users: Array<any> = [];
+  public users: IUser[] = [];
   public albums: Array<Object> = [];
-  private counterPhotos: Number = 0;
-  public days = [
+  private counterPhotos: number;
+  public daysOfWeek = [
     { id: 0, name: 'sunday', text: 'Sun' },
     { id: 1, name: 'monday', text: 'Mon' },
     { id: 2, name: 'tuesday', text: 'Tue' },
@@ -25,7 +27,7 @@ export class ListUsersComponent implements OnInit {
   // Forms
   public searchField = new FormControl();
   private searchForm: FormGroup = this.formBuilder.group({ search: this.searchField });
-  private controls = this.days.map(day => new FormControl(false));
+  private controls = this.daysOfWeek.map(day => new FormControl(false));
   private registerForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
     name: ['', Validators.required],
@@ -110,16 +112,22 @@ export class ListUsersComponent implements OnInit {
   }
 
   public addNewUser(): void {
+    const selectedDays = this.registerForm.value.days
+    .map((checked, index) => checked ? this.daysOfWeek[index].id : null)
+    .filter(value => value !== null);
+
     const user = {
       address: {
         city: this.registerForm.value.city,
       },
-      days: [false, false, false, false, false, false, false],
+      rideInGroup: this.registerForm.value.rideInGroup,
+      days: selectedDays,
       email: this.registerForm.value.email,
       name: this.registerForm.value.name,
       username: this.registerForm.value.username,
     };
-    if (this.registerForm.status !== 'INVALID') {
+
+    if (this.registerForm.status !== Status[0]) {
       this.userService.addNewUser(user)
         .then((response) => {
           this.users.push(response);
@@ -133,11 +141,27 @@ export class ListUsersComponent implements OnInit {
   }
 
   public removeUser(id: Number): void {
-    const index = this.users.findIndex(x => x.id === id);
-    this.users.splice(index, 1);
+    Swal({
+      title: 'Delete user',
+      text: 'Do you want to delete this user?',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#6DCAB3',
+      cancelButtonColor: '#777',
+      confirmButtonText: 'Yes, delete it!'
+    })
+      .then((result) => {
+        const index = this.users.findIndex(x => x.id === id);
+        this.users.splice(index, 1);
+      });
   }
 
   public resetForm(): void {
     this.registerForm.reset();
   }
+}
+
+export enum Status {
+  INVALID = 0,
+  VALID = 1
 }
