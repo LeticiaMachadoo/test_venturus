@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-list-users',
@@ -10,9 +11,12 @@ export class ListUsersComponent implements OnInit {
   public users: Array<any> = [];
   public albums: Array<Object> = [];
   private counterPhotos: Number = 0;
+  public searchField = new FormControl();
+  public searchForm: FormGroup = this.formBuilder.group({ search: this.searchField });
   constructor(
+    public formBuilder: FormBuilder,
     public userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userService.getUsers().then((response) => {

@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { FilterPipe } from './filter.pipe';
 import {ROUTES} from './app.routes';
 
 import { AppComponent } from './app.component';
@@ -13,11 +15,13 @@ import { ListUsersComponent } from './list-users/list-users.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ListUsersComponent
+    ListUsersComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
