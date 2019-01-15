@@ -1,0 +1,10 @@
+breadcrumb {
+  .fluid-bread,
+  .breadcrumb {
+    background-color: map-get($gray, 'lighter');
+
+    .breadcrumb-item {
+      color: map-get($gray, 'base');
+    }
+  }
+}
