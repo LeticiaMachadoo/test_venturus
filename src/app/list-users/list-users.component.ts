@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { FormControl, FormGroup, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { IUser } from 'src/interfaces/user';
-import { ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
-import { JsonPipe } from '@angular/common';
+import { Data } from 'src/providers/data';
+import { NavigationEnd, Router, Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-users',
@@ -21,24 +21,21 @@ export class ListUsersComponent implements OnInit {
   // Forms
   public searchField = new FormControl();
   private searchForm: FormGroup = this.formBuilder.group({ search: this.searchField });
+  private breadcrumbs = [];
 
   constructor(
     public formBuilder: FormBuilder,
     public userService: UserService,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.activatedRoute.queryParams.subscribe((params: IUser) => {
-      if (params) {
-        this.newUser.push(params);
-      }
-    });
-  }
+    private data: Data,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.userService.getUsers().then((response) => {
       this.users = response;
       this.getAlbumsByUsers();
-      this.newUser.map((user) => this.users.push(user));
+      this.data.storage.map((user) => this.users.push(user));
     });
     this.getPhotosByAlbum();
     this.getPostsByUser();

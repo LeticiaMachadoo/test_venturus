@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BreadcrumbsModule} from "ng6-breadcrumbs";
 
 import { FilterPipe } from './filter.pipe';
 import {ROUTES} from './app.routes';
@@ -13,6 +15,8 @@ import { UserService } from '../services/user.service';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { RegistrationHelpComponent } from './registration-help/registration-help.component';
+import { Data } from 'src/providers/data';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,17 +24,21 @@ import { RegistrationHelpComponent } from './registration-help/registration-help
     ListUsersComponent,
     FilterPipe,
     AddUserComponent,
-    RegistrationHelpComponent
+    RegistrationHelpComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BreadcrumbsModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
     RequesterService,
-    UserService
+    UserService,
+    Data,
   ],
   bootstrap: [AppComponent]
 })

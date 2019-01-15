@@ -12,6 +12,7 @@ export interface IUser {
   phone: string;
   website: string;
   company: ICompany;
+  rideInGroup: string;
   albums: [IAlbums];
   posts: [IPosts];
 }

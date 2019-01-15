@@ -1,4 +1,4 @@
-<div class="registration">
+<div class="registration container">
   <div class="title">
     <h1>Registration</h1>
     <div class="border-title"></div>
@@ -6,7 +6,7 @@
   <app-registration-help></app-registration-help>
   <div class="d-flex justify-content-center align-items-center">
     <form [formGroup]="registerForm" class="col-md-10">
-      <div class="form-row clearfix">
+      <div class="row justify-content-between align-items-start clearfix">
         <div class="col-md-6">
           <div class="form-group">
             <label for="username">Username</label>
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group" formGroupName="address">
             <label for="city">City <span>optional</span></label>
             <input type="text" class="form-control" id="city" formControlName="city">
           </div>

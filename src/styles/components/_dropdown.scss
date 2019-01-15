@@ -1,0 +1,22 @@
+.dropdown {
+  .btn {
+    border: 0;
+    color: map-get($gray, 'base');
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.dropdown-toggle {
+      box-shadow: none;
+    }
+  }
+
+  .dropdown-item {
+    &:hover,
+    &:focus,
+    &:active,
+    &.dropdown-toggle {
+      color: map-get($colors, 'primary');
+    }
+  }
+}
