@@ -34,6 +34,7 @@ export class ListUsersComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers().then((response) => {
       this.users = response;
+      this.users.map((user) => user.rideInGroup = this.getMockRideInGroup());
       this.getAlbumsByUsers();
       this.data.storage.map((user) => this.users.push(user));
     });
@@ -110,6 +111,10 @@ export class ListUsersComponent implements OnInit {
         this.users.splice(index, 1);
       });
   }
+
+  public getMockRideInGroup(): any {
+    const rideInGroup = ['Always', 'Sometimes', 'Never'];
+    return rideInGroup[Math.floor(Math.random() * rideInGroup.length)];
+
+  }
 }
-
-
