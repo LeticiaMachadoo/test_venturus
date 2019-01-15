@@ -1,107 +1,48 @@
-<div class="content">
-  <div class="container">
-    <div class="search-elements">
-      <form [formGroup]="searchForm">
-        <div class="form-group">
-          <div class="input-group col-md-4">
-            <div class="input-group-append">
-              <span class="input-group-text" id="search-field"><i class="fa fa-search"></i></span>
-            </div>
-            <input type="text" class="form-control" formControlName="search" placeholder="Perquisar" id="search" aria-describedby="search-field">
-          </div>
+<div class="search-elements">
+  <form [formGroup]="searchForm">
+    <div class="form-group">
+      <div class="input-group col-md-4">
+        <div class="input-group-append">
+          <span class="input-group-text" id="search-field"><i class="fa fa-search"></i></span>
         </div>
-      </form>
-    </div>
-    <div class="list-users">
-      <div class="row">
-        <div class="table-responsive">
-          <table class="table table-striped  table-borderless">
-            <thead>
-              <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Name</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">City</th>
-                <th scope="col">Ride in group</th>
-                <th scope="col">Day of the week</th>
-                <th scope="col">Posts</th>
-                <th scope="col">Albums</th>
-                <th scope="col">Photos</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of users | filter : searchField.value">
-                <td>{{user.username}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.address.city}}</td>
-                <td>Ride in group</td>
-                <td>Day of the week</td>
-                <td>{{user.posts ? user.posts.length : 0}}</td>
-                <td>{{user.albums ? user.albums.length : 0}}</td>
-                <td>{{getCounterPhotosByUser(user.id)}}</td>
-                <td><button (click)="removeUser(user.id)" class="btn btn-link"><i class="fa fa-trash"></i></button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <input type="text" class="form-control" formControlName="search" placeholder="Perquisar" id="search" aria-describedby="search-field">
       </div>
     </div>
-    <div class="registration">
-      <form [formGroup]="registerForm">
-        <div class="form-row clearfix">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" formControlName="username" (focus)="focused=true" (focusout)="focused=false">
-              <div class="info">{{focused ? 'hint' : ''}}</div>
-            </div>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" formControlName="name">
-            </div>
-            <div class="form-group">
-              <label for="email">E-mail</label>
-              <input type="email" class="form-control" id="email" formControlName="email">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="city">City <span>optional</span></label>
-              <input type="text" class="form-control" id="city" formControlName="city">
-            </div>
-            <div class="form-group">
-              <label>Ride in group?</label>
-              <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="always" value="always" formControlName="rideInGroup" class="custom-control-input">
-                <label class="custom-control-label" for="always">Always</label>
-              </div>
-              <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="sometimes" value="sometimes" formControlName="rideInGroup" class="custom-control-input">
-                <label class="custom-control-label" for="sometimes">Sometimes</label>
-              </div>
-              <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="never" value="never" formControlName="rideInGroup" class="custom-control-input">
-                <label class="custom-control-label" for="never">Never</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Days of the week</label>
-              <div formArrayName="days" class="custom-control custom-checkbox" *ngFor="let day of daysOfWeek; let i = index">
-                <input class="custom-control-input" type="checkbox" [id]="day.name" [formControlName]="day.id">
-                <label class="custom-control-label" [for]="day.name">{{day.text}}</label>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="ctas">
-              <button class="btn btn-primary" (click)="addNewUser()">Save</button>
-              <button class="btn btn-secondary" (click)="resetForm()">Discart</button>
-            </div>
-          </div>
-        </div>
-      </form>
+  </form>
+</div>
+<div class="list-users">
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-striped  table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">City</th>
+            <th scope="col">Ride in group</th>
+            <th scope="col">Day of the week</th>
+            <th scope="col">Posts</th>
+            <th scope="col">Albums</th>
+            <th scope="col">Photos</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users | filter : searchField.value">
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.address.city}}</td>
+            <td>Ride in group</td>
+            <td>Day of the week</td>
+            <td>{{user.posts ? user.posts.length : 0}}</td>
+            <td>{{user.albums ? user.albums.length : 0}}</td>
+            <td>{{getCounterPhotosByUser(user.id)}}</td>
+            <td><button (click)="removeUser(user.id)" class="btn btn-link"><i class="fa fa-trash"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

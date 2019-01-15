@@ -1,0 +1,55 @@
+<div class="registration">
+  <form [formGroup]="registerForm">
+    <div class="form-row clearfix">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" formControlName="username" (focus)="focused=true" (focusout)="focused=false">
+          <div class="info">{{focused ? 'hint' : ''}}</div>
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="city">City <span>optional</span></label>
+          <input type="text" class="form-control" id="city" formControlName="city">
+        </div>
+        <div class="form-group">
+          <label>Ride in group?</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="always" value="always" formControlName="rideInGroup" class="custom-control-input">
+            <label class="custom-control-label" for="always">Always</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sometimes" value="sometimes" formControlName="rideInGroup" class="custom-control-input">
+            <label class="custom-control-label" for="sometimes">Sometimes</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="never" value="never" formControlName="rideInGroup" class="custom-control-input">
+            <label class="custom-control-label" for="never">Never</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Days of the week</label>
+          <div formArrayName="days" class="custom-control custom-checkbox" *ngFor="let day of daysOfWeek; let i = index">
+            <input class="custom-control-input" type="checkbox" [id]="day.name" [formControlName]="day.id">
+            <label class="custom-control-label" [for]="day.name">{{day.text}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="ctas">
+          <button class="btn btn-primary" (click)="addNewUser()">Save</button>
+          <button class="btn btn-secondary" (click)="resetForm()">Discart</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
