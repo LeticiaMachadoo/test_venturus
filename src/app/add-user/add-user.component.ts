@@ -22,7 +22,7 @@ export class AddUserComponent {
   ];
   private controls = this.daysOfWeek.map(day => new FormControl(false));
   private registerForm: FormGroup = this.formBuilder.group({
-    username: ['', Validators.required],
+    username: ['', [Validators.required, Validators.minLength(3)]],
     name: ['', Validators.required],
     email: ['', Validators.required],
     address: this.formBuilder.group({

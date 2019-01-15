@@ -1,4 +1,4 @@
-<div class="registration container">
+<div class="registration">
   <div class="title">
     <h1>Registration</h1>
     <div class="border-title"></div>
@@ -11,7 +11,7 @@
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" formControlName="username" (focus)="focused=true" (focusout)="focused=false">
-            <div class="info">{{focused ? 'hint' : ''}}</div>
+            <div class="info">{{focused ? 'The username must contain the minimum of 3 letters' : ''}}</div>
           </div>
           <div class="form-group">
             <label for="name">Name</label>
