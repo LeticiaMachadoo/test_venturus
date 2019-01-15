@@ -1,0 +1,13 @@
+<div class="help">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let item of data">
+      <h3>{{item.title}}</h3>
+      <div class="body">
+        <i [class]="item.icon"></i>
+        <div class="text">
+          {{item.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,20 @@ form {
         border-color: map-get($colors, 'danger');
       }
     }
+
+  }
+
+  .form-group {
+    .input-group {
+      .input-group-text {
+        background-color: transparent;
+        border-right: 0;
+      }
+
+      input {
+        border-left: 0;
+      }
+    }
   }
 
   .custom-control {

@@ -10,3 +10,26 @@ a,
 .btn-link {
   color: map-get($colors, 'primary');
 }
+
+.title {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  h1 {
+    background: map-get($colors, 'white');
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: 300;
+    padding: 0 1.5rem 0 0;
+    position: relative;
+    z-index: 999;
+  }
+
+  .border-title {
+    border: 1px solid map-get($gray, 'light');
+    width: 100%;
+    top: 50%;
+  }
+}
