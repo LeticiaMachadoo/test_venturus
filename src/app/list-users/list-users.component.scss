@@ -9,7 +9,8 @@
 
   .search-elements {
     margin-left: 1.5rem;
-    min-width: 300px;
+    max-width: 300px;
+    width: 100%;
 
     .form-group {
       margin: 0;
