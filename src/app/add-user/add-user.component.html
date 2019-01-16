@@ -30,23 +30,23 @@
           <div class="form-group">
             <label>Ride in group?</label>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="always" value="always" formControlName="rideInGroup" class="custom-control-input">
+              <input type="radio" id="always" value="Always" formControlName="rideInGroup" class="custom-control-input">
               <label class="custom-control-label" for="always">Always</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="sometimes" value="sometimes" formControlName="rideInGroup" class="custom-control-input">
+              <input type="radio" id="sometimes" value="Sometimes" formControlName="rideInGroup" class="custom-control-input">
               <label class="custom-control-label" for="sometimes">Sometimes</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="never" value="never" formControlName="rideInGroup" class="custom-control-input">
+              <input type="radio" id="never" value="Never" formControlName="rideInGroup" class="custom-control-input">
               <label class="custom-control-label" for="never">Never</label>
             </div>
           </div>
           <div class="form-group">
             <label>Days of the week</label>
-            <div formArrayName="days" class="custom-control custom-checkbox" *ngFor="let day of daysOfWeek; let i = index">
-              <input class="custom-control-input" type="checkbox" [id]="day.name" [formControlName]="day.id">
-              <label class="custom-control-label" [for]="day.name">{{day.text}}</label>
+            <div formArrayName="days" class="custom-control custom-checkbox" *ngFor="let day of days.daysOfWeek; let i = index">
+              <input class="custom-control-input" type="checkbox" [id]="day" [formControlName]="i">
+              <label class="custom-control-label" [for]="day">{{day}}</label>
             </div>
           </div>
         </div>

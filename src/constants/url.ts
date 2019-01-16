@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-// @Injectable()
+@Injectable()
 export class Url {
   public static USERS = '/users';
   public static PHOTOS = '/photos';

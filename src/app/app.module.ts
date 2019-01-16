@@ -17,6 +17,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { RegistrationHelpComponent } from './registration-help/registration-help.component';
 import { Data } from 'src/providers/data';
 import { HeaderComponent } from './header/header.component';
+import { Days } from 'src/constants/days';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HeaderComponent } from './header/header.component';
     RequesterService,
     UserService,
     Data,
+    Days
   ],
   bootstrap: [AppComponent]
 })

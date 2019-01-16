@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, ValidatorFn, FormArray, FormControl } from '@angular/forms';
 import { UserService } from 'src/services/user.service';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Data } from 'src/providers/data';
+import { Days } from 'src/constants/days';
 
 @Component({
   selector: 'app-add-user',
@@ -11,16 +12,7 @@ import { Data } from 'src/providers/data';
   styleUrls: ['./add-user.component.scss']
 })
 export class AddUserComponent {
-  public daysOfWeek: Array<Object> = [
-    { id: 0, name: 'sunday', text: 'Sun' },
-    { id: 1, name: 'monday', text: 'Mon' },
-    { id: 2, name: 'tuesday', text: 'Tue' },
-    { id: 3, name: 'wednesday', text: 'Wed' },
-    { id: 4, name: 'thuersday', text: 'Thu' },
-    { id: 5, name: 'friday', text: 'Fri' },
-    { id: 6, name: 'saturday', text: 'Sat' }
-  ];
-  private controls = this.daysOfWeek.map(day => new FormControl(false));
+  private controls = this.days.daysOfWeek.map(day => new FormControl(false));
   private registerForm: FormGroup = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
     name: ['', Validators.required],
@@ -36,7 +28,8 @@ export class AddUserComponent {
     public formBuilder: FormBuilder,
     public userService: UserService,
     private route: Router,
-    private data: Data
+    private data: Data,
+    private days: Days
   ) { }
 
   public minSelectedCheckboxes(min: Number = 1): Object | null {
@@ -51,6 +44,11 @@ export class AddUserComponent {
   }
 
   public addNewUser(): void {
+    const selectedDays = this.registerForm.value.days
+    .map((checked, index) => checked ? this.days.daysOfWeek[index] : null)
+    .filter(value => value !== null);
+    this.registerForm.value.days = selectedDays;
+
     if (this.registerForm.status === Status[1]) {
       this.userService.addNewUser(this.registerForm.value)
         .then((response) => {

@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { IUser } from 'src/interfaces/user';
 import Swal from 'sweetalert2';
 import { Data } from 'src/providers/data';
-import { NavigationEnd, Router, Route, ActivatedRoute } from '@angular/router';
+import { Days } from 'src/constants/days';
 
 @Component({
   selector: 'app-list-users',
@@ -27,14 +27,15 @@ export class ListUsersComponent implements OnInit {
     public formBuilder: FormBuilder,
     public userService: UserService,
     private data: Data,
-    private router: Router,
-    private route: ActivatedRoute
+    private days: Days
   ) {}
 
   ngOnInit() {
     this.userService.getUsers().then((response) => {
       this.users = response;
       this.users.map((user) => user.rideInGroup = this.getMockRideInGroup());
+      this.users.map((user) => user.days = this.getMockDaysOfWeek(Math.floor(Math.random() * 6) + 1));
+
       this.getAlbumsByUsers();
       this.data.storage.map((user) => this.users.push(user));
     });
@@ -115,6 +116,34 @@ export class ListUsersComponent implements OnInit {
   public getMockRideInGroup(): any {
     const rideInGroup = ['Always', 'Sometimes', 'Never'];
     return rideInGroup[Math.floor(Math.random() * rideInGroup.length)];
+  }
 
+  public getMockDaysOfWeek(repeat: number): Array<Object> {
+    const mock: Array<Object> = [];
+    for (let i = 0; i < repeat; i++) {
+      const day = this.days.daysOfWeek[Math.floor(Math.random() * this.days.daysOfWeek.length)];
+      if (!mock.includes(day)) {
+        mock.push(day);
+      }
+    }
+    return mock;
+  }
+
+  public labelDaysOfWeeks(days: any): String {
+    const ALL_DAYS = 7;
+
+    if (days.length === ALL_DAYS) {
+      return 'Everyday';
+    }
+
+    if (this.days.hasWeekDays(days)) {
+      return 'Week Days';
+    }
+
+    if (this.days.hasWeekends(days)) {
+      return 'Weekends';
+    }
+
+    return this.days.getDaysOfWeekSelected(days);
   }
 }
