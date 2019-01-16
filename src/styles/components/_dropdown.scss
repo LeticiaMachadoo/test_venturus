@@ -16,6 +16,7 @@
     &:focus,
     &:active,
     &.dropdown-toggle {
+      background: map-get($colors, 'color-white');
       color: map-get($colors, 'primary');
     }
   }
