@@ -8,14 +8,14 @@ export const ROUTES: Routes = [
     path: 'users',
     component: ListUsersComponent,
     data: {
-      breadcrumb: '> Listagem de Usuários',
+      breadcrumb: '• Listagem de Usuários',
     }
   },
   {
     path: 'users/new',
     component: AddUserComponent,
     data: {
-      breadcrumb: '> Novo Usuário',
+      breadcrumb: '• Novo Usuário',
     }
   }
 ];
