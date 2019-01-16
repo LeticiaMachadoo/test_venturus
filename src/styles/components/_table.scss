@@ -1,0 +1,26 @@
+table {
+  tbody {
+    tr {
+      .trash {
+        button {
+          padding: 0;
+          width: 1rem;
+
+          i {
+            display: none;
+          }
+        }
+      }
+
+      &:hover {
+        .trash {
+          button {
+            i {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
