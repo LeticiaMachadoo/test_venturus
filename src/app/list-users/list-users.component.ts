@@ -15,7 +15,7 @@ export class ListUsersComponent implements OnInit {
   public focused: Boolean = false;
   public users: IUser[] = [];
   public newUser: IUser[] = [];
-  public albums: Array<Object> = [];
+  public albums: Object[] = [];
   private counterPhotos: number;
 
   // Forms
@@ -113,13 +113,13 @@ export class ListUsersComponent implements OnInit {
       });
   }
 
-  public getMockRideInGroup(): any {
+  public getMockRideInGroup(): string {
     const rideInGroup = ['Always', 'Sometimes', 'Never'];
     return rideInGroup[Math.floor(Math.random() * rideInGroup.length)];
   }
 
-  public getMockDaysOfWeek(repeat: number): Array<Object> {
-    const mock: Array<Object> = [];
+  public getMockDaysOfWeek(repeat: number): Object[] {
+    const mock: Object[] = [];
     for (let i = 0; i < repeat; i++) {
       const day = this.days.daysOfWeek[Math.floor(Math.random() * this.days.daysOfWeek.length)];
       if (!mock.includes(day)) {
@@ -129,7 +129,7 @@ export class ListUsersComponent implements OnInit {
     return mock;
   }
 
-  public labelDaysOfWeeks(days: any): String {
+  public labelDaysOfWeeks(days: string[]): String {
     const ALL_DAYS = 7;
 
     if (days.length === ALL_DAYS) {

@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registration-help.component.scss']
 })
 export class RegistrationHelpComponent implements OnInit {
-  public data: Array<Object> = [];
+  public data: Object[] = [];
   constructor() { }
 
   ngOnInit() {
     this.data = this.getMockHelp();
   }
 
-  public getMockHelp(): Array<Object> {
+  public getMockHelp(): Object[] {
     return [
       {
         title: 'Need help?',

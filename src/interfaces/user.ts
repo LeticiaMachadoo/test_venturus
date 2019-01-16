@@ -13,7 +13,7 @@ export interface IUser {
   website: string;
   company: ICompany;
   rideInGroup: string;
-  days: Array<Object>;
+  days: Object[];
   albums: [IAlbums];
   posts: [IPosts];
 }
